@@ -12,7 +12,6 @@ body {
     width: 950px;
     background-color: ivory;
 }
-
 img {
     float: left;
 }
@@ -30,17 +29,17 @@ img {
 }
 
 .center {
-    margin-left: 315px;
+    margin-left: 320px;
     margin-right: 300px;
     width: 300px;
-    padding: 10px;
 }
+
 ul {
     list-style-type: none;
 }
 
 li {
-display: inline;
+    display: inline;
 }
 
 #navi a {
