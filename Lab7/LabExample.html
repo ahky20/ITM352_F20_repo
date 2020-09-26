@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Example</title>
+</head>
+<body>
+    <h1>Invoice</h1>
+    <script>
+        state = 'HI';           // "Retrieved" from user profile
+        switch (state) {
+            case 'HI':      // means if the variable matches the values
+                taxRate = 0.0417;
+                break;
+            case 'CA':
+                taxRate = 0.08;
+                break;
+            case 'VT':
+                taxRate = 0.0;
+                break;
+            default:
+                taxRate = 0.02;
+                break;
+        } 
+        /*
+        if (state == 'HI') {
+            taxRate  0.0417;
+        }
+        else if (state =='CA') {
+            taxRate = 0.08;
+        } else{
+            taxRate = 0.02;
+        }
+        this is the same as the top
+        */
+        /*
+        This program outputs a customer invoice
+        Date: Sept. 25, 2020
+        Author: Amber Young
+        */
+
+        var subTotal = 120;      // Sub-total from where its from
+        //var taxRate = 0.05;     // State tax rate calculated from somewhere
+        var grandTotal = 0;     
+        var taxExempt = false;   //Tax exempt status
+        var taxOwing = 0;
+        var discountRate = 0.1;     // Discount rate for tax-exempt businesses
+        
+        var subTotalOut = `Your sub-total is $ ${subTotal}`;
+        document.write(subTotalOut);
+        document.write('<BR>');
+
+        if (taxExempt == true && subTotal > 100) // Calculate discount, if applicable
+        {
+            discount = subTotal * discountRate;
+            document.write(`Congratulations! You get a discount of $ ${discount}<BR>`);
+            subTotal = subTotal - discount; // same if you write subTotal -= discount
+        }
+
+        if (taxExempt == true) {        // Tax exempt; print message; would be the same if you said just taxExempt in ()
+            
+            document.write("You are tax exempt<BR>");
+        }                       // don't forget to add {} especially if there's more than one line of code
+        else {                  // Calculate tax owing
+            taxOwing = subTotal * taxRate;
+            taxOut = taxOwing.toFixed(2);
+            var taxOwingOut = `You owe $ ${taxOut} in tax`;
+            document.write(taxOwingOut);
+        }
+        
+        grandTotal = subTotal + taxOwing; 
+        document.write('<BR>');
+        var totalOut = `Your grand total is: $ ${grandTotal}`;
+        document.write(totalOut);
+    </script>
+</body>
+</html>
