@@ -4,9 +4,9 @@ var myAge = 21;     // My age
 console.log("Counting Program for Ex2, with break");
 while (number < myAge) {
     number++;
-    if ((number >= myAge / 2) && (number <= myAge * 3 / 4)) {   //okay to have put break here without {}
-        continue;
+    if ((number >= myAge / 2) ) {   
+        break;
     }
     console.log("Age=" + number);
 }
-console.log("No age zone!");
+console.log("Don't ask how old I am!");
