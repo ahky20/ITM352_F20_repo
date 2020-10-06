@@ -1,6 +1,6 @@
-var day = 3;
-var month = 8;
-var year = 2013;
+var day = 26;
+var month = 9;
+var year = 1999;
 var StrYear = String(year);
 var lastTwo = StrYear.slice(2,4);
 var step1 = Number(lastTwo); // step1=13
