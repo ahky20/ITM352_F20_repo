@@ -1,0 +1,24 @@
+> var fruits = [
+... "Papaya", "Starfruit", "Peach", "Apple", "Banana"];
+undefined
+> fruits
+[ 'Papaya', 'Starfruit', 'Peach', 'Apple', 'Banana' ]
+> fruits[0];
+'Papaya'
+> fruits.length
+5
+> fruits.sort();
+[ 'Apple', 'Banana', 'Papaya', 'Peach', 'Starfruit' ]
+> fruits[0]
+'Apple'
+> fruits.push("Blueberry"); // push just adds stuff to the end of the array
+6
+> fruits;
+[ 'Apple', 'Banana', 'Papaya', 'Peach', 'Starfruit', 'Blueberry' ]
+> fruits.sort();
+[ 'Apple', 'Banana', 'Blueberry', 'Papaya', 'Peach', 'Starfruit' ]
+> fruits.pop();
+'Starfruit'
+> fruits;
+[ 'Apple', 'Banana', 'Blueberry', 'Papaya', 'Peach' ]
+>
