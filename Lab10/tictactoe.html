@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacToe</title>
+</head>
+<body>
+    <h1>Tic Tac Toe Board</h1>
+
+    <script>
+        //var board = (row1, row2, row3);
+        var board = [["X", "X", "O"], ["X", "O", "O"], ["O", "X", "X"]];
+        var row1 = ["X", "X", "O"];
+        var row2 = ["X", "O", "O"];
+        var row3 = ["O", "X", "X"];
+
+        for (rowNum = 0; rowNum < board.length; rowNum++) {
+            // start new row
+            document.write("<tr>");
+            for (col = 0; col < board[rowNum].length; col++) {
+                // print cell
+                document.write("<td>" + board[rowNum][col] + "</td>");
+            }
+            document.write("</tr>")
+        }
+    </script>
+</body>
+</html>

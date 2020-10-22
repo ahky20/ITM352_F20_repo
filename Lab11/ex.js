@@ -19,7 +19,7 @@ console.log();
 attributes  =  "Amber;21;MIS"; // don't put spaces or else it will appear in the console like this [ 'Amber', ' 21', ' MIS' ]
 
 var Amber = attributes.split(";");
-
+console.log(Amber);
 Amber_string = Amber.join(",");
 
 console.log(Amber_string);
