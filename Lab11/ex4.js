@@ -21,10 +21,33 @@ function isNonNegInt(stringToCheck, returnErrors = false) {
         return errors.length == 0;
     }
     */
-    return returnErrors ? errors : (errors.length == 0) 
+    return returnErrors ? errors : (errors.length == 0) //simpler way of doing the things commented out above
 }
 
-for (i=0; i< values.length; i++) {
+/*for (i=0; i< values.length; i++) {
     console.log("String \' " + values[i] + "\' is " + isNonNegInt(values[i], true).join("||"));
-    
+    // this will tell if the value is a negative integer. If it is not, then it will say why.
+}*/
+console.log("*****");
+// exercise 5 a
+function callback(item, index) {
+    errorsReturned = isNonNegInt(item, true).join("||");
+    if (errorsReturned.length == 0) {
+        console.log("String \' " + item + "\' is valid");
+    } else {
+        console.log("String \' " + item + "\' is " + errorsReturned);
+    }
 }
+
+values.forEach(callback);
+// exercise 5 b
+values.forEach(
+    function callback(item, index) {
+        errorsReturned = isNonNegInt(item, true).join("||");
+        if (errorsReturned.length == 0) {
+            console.log("String \' " + item + "\' is valid");
+        } else {
+            console.log("String \' " + item + "\' is " + errorsReturned);
+        }
+    }
+);
