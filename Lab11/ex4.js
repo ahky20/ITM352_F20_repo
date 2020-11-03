@@ -4,6 +4,8 @@ function isNonNegInt(stringToCheck, returnErrors = false) {
     if(Number(stringToCheck) != stringToCheck) errors.push('Not a number!'); // Check if string is a number value
     if(stringToCheck < 0) errors.push('Negative value!'); // Check if it is non-negative
     if(parseInt(stringToCheck) != stringToCheck) errors.push('Not an integer!'); // Check that it is an integer
+    return returnErrors ? errors : (errors.length == 0) //simpler way of doing the things commented out below
+}
     /*if (returnErrors) {
         return errors;
     }
@@ -21,8 +23,7 @@ function isNonNegInt(stringToCheck, returnErrors = false) {
         return errors.length == 0;
     }
     */
-    return returnErrors ? errors : (errors.length == 0) //simpler way of doing the things commented out above
-}
+    
 
 /*for (i=0; i< values.length; i++) {
     console.log("String \' " + values[i] + "\' is " + isNonNegInt(values[i], true).join("||"));
