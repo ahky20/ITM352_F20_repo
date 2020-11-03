@@ -1,6 +1,7 @@
 <script>
 // Amber Young November 2, 2020
 // Making an E-commerce website that sells special poke balls
+// Followed along with the video from prof port
 // Master array for products
 var products_array = [
     //Product 1
@@ -58,20 +59,25 @@ var products_array = [
 <body>
     <h1>Special Poké Ball Shop</h1>
     <div><main>
-    
+    <form action="./invoice.html" method="GET"> 
     <script>
+        
         // Code from SmartPhoneProducts3
         for(i=1; i<products_array.length; i++) {
         document.write(`
         <h2>${products_array[i].name}</h2>
         <h3>$${products_array[i].price.toFixed(2)}</h3>
         <img src="${products_array[i].image}">
-        <p>${products_array[i].description}</p>
+        <p>${products_array[i].description}</p> 
+        <input type="text">
     
     `);
     }
     </script>
-</main></div>
+    </form>
+<input type="submit" value="BUY"></main>
+
+</div>
 <h2>Your One-stop Store</h2>
 </body>
 </html>

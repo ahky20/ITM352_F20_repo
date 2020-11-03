@@ -1,11 +1,13 @@
 /* General */  
 body {
-    width: 800px; 
+    width:900px; 
     margin: 0 auto;
     background-color:powderblue;
+    float: center;
 }
 
 img {
+    float: center;
     border: 1px solid #ddd;
             /* Gray border */
             border-radius: 4px;
@@ -23,6 +25,14 @@ img {
 p {
     font: Arial;
     font-size: 3ww;
+    float: center;
 }
 
+h1 {
+    float: center;
+}
+
+h2 {
+    float: center;
+}
 
