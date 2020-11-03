@@ -1,0 +1,77 @@
+<script>
+// Amber Young November 2, 2020
+// Making an E-commerce website that sells special poke balls
+// Master array for products
+var products_array = [
+    //Product 1
+    { 
+        "name":"Moon Ball",
+        "price":3.00,
+        "image":"https://cdn.bulbagarden.net/upload/0/0e/SugimoriMoonBall.png",
+        "description": "Makes it easier to catch Pokémon that can evolve using a Moon Stone."
+    },
+    // Product 2
+    { 
+        "name":"Friend Ball",
+        "price":3.00,
+        "image":"https://cdn.bulbagarden.net/upload/4/4d/SugimoriFriendBall.png",
+        "description": "Makes Pokémon caught in this Poké Ball more friendly towards you immediately."
+    },
+    // Product 3
+    { 
+        "name":"Net Ball",
+        "price":10.00,
+        "image":"https://cdn.bulbagarden.net/upload/e/ed/SugimoriNetBall.png",
+        "description": "More effective in catching Water or Bug type Pokémon."
+    },
+    // Product 4
+    { 
+        "name":"Dive Ball",
+        "price":10.00,
+        "image":"https://cdn.bulbagarden.net/upload/8/85/SugimoriDiveBall.png",
+        "description": "Works especially well with Pokémon that live underwater."
+    },
+    // Product 5
+    { 
+        "name":"Luxury Ball",
+        "price":10.00,
+        "image":"https://cdn.bulbagarden.net/upload/b/b1/SugimoriLuxuryBall.png",
+        "description": "A comfortable Poké Ball, Pokémon quickly grow friendly after being caught."
+    },
+    // Product 6
+    {
+        "name":"Premier Ball",
+        "price":20.00,
+        "image":"https://cdn.bulbagarden.net/upload/a/a1/SugimoriPremierBall.png",
+        "description": "Somewhat rare, made as a commerative item used to celebrate an event of some sort."
+    }
+];
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="productsstyle.css">
+    <title>Special Poké Ball Shop</title>
+</head>
+<body>
+    <h1>Special Poké Ball Shop</h1>
+    <div><main>
+    
+    <script>
+        // Code from SmartPhoneProducts3
+        for(i=1; i<products_array.length; i++) {
+        document.write(`
+        <h2>${products_array[i].name}</h2>
+        <h3>$${products_array[i].price.toFixed(2)}</h3>
+        <img src="${products_array[i].image}">
+        <p>${products_array[i].description}</p>
+    
+    `);
+    }
+    </script>
+</main></div>
+<h2>Your One-stop Store</h2>
+</body>
+</html>
