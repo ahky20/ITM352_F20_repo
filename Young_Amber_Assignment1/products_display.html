@@ -2,6 +2,7 @@
 // Amber Young November 2, 2020
 // Making an E-commerce website that sells special poke balls
 // Followed along with the video from prof port
+// don't forget to change GET to POST!!!
 // Master array for products
 var products_array = [
     //Product 1
@@ -58,26 +59,29 @@ var products_array = [
 </head>
 <body>
     <h1>Special Poké Ball Shop</h1>
-    <div><main>
-    <form action="./invoice.html" method="GET"> 
+    <form action="./invoice.html" method="POST"> 
+    <div>
+        <main>
     <script>
-        
-        // Code from SmartPhoneProducts3
+        // Display Products
+        // Code from SmartPhoneProducts3 
         for(i=1; i<products_array.length; i++) {
         document.write(`
         <h2>${products_array[i].name}</h2>
         <h3>$${products_array[i].price.toFixed(2)}</h3>
         <img src="${products_array[i].image}">
         <p>${products_array[i].description}</p> 
-        <input type="text">
+        <label>Quantity</label>
+        <input type="text" name="quantity${i}">
     
     `);
     }
     </script>
-    </form>
-<input type="submit" value="BUY"></main>
-
+    
+</main>
 </div>
+<input type="submit" value="BUY">
+</form>
 <h2>Your One-stop Store</h2>
 </body>
 </html>

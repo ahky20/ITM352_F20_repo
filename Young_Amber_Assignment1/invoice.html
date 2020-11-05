@@ -8,7 +8,7 @@
 <body>
     <script>
         // code from Invoice4
-        
+        // Prints out invoice rows
         function generate_item_rows(product_quantities_array) {
           for (i=0; i < product_quantities_array.length; i++) {
 
@@ -33,7 +33,7 @@
       }
 
         }
-
+        // checks if form inputs are valid
     function isNonNegInt(stringToCheck, returnErrors = false) {
       errors = []; // assume no errors at first
       if(Number(stringToCheck) != stringToCheck) errors.push('Not a number!'); // Check if string is a number value
@@ -86,7 +86,7 @@
         "description": "Somewhat rare, made as a commerative item used to celebrate an event of some sort."
     }
 ];
-        var quantities =[0,1,2,3,4,5];
+        var quantities = [4,3,6,10,3,'pokemon']
         
 
      // Initialize subtotal
@@ -114,7 +114,7 @@
         <th style="text-align: center;" width="54%">extended price</th>
       </tr>
       <script>
-          // Product row 1
+          // Product rows
           generate_item_rows(quantities);
       
 
