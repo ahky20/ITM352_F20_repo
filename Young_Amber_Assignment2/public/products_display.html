@@ -1,0 +1,86 @@
+<script>
+// Amber Young November 2, 2020
+// Making an E-commerce website that sells special poke balls
+// Followed along with the video from prof port for some parts
+// don't forget to change GET to POST!!!
+
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="productsstyle.css">
+    <script type="text/javascript" src="./product_data.js"></script>    
+    <title>Special Poké Ball Shop</title>
+</head>
+<body>
+    <h1>Special Poké Ball Shop</h1>
+    <form action="/invoice.html" method="POST"> 
+    <div>
+        <main>
+    <script>
+        // Display Products
+        var products = [
+    {
+        "name":"Moon Ball",
+        "price":3.00,
+        "image":"https://cdn.bulbagarden.net/upload/0/0e/SugimoriMoonBall.png",
+        "description": "Makes it easier to catch Pokemon that can evolve using a Moon Stone."
+    },
+    {
+        "name":"Friend Ball",
+        "price":3.00,
+        "image":"https://cdn.bulbagarden.net/upload/4/4d/SugimoriFriendBall.png",
+        "description": "Makes Pokemon caught in this Poke Ball more friendly towards you immediately."
+    },
+    {
+        "name":"Net Ball",
+        "price":10.00,
+        "image":"https://cdn.bulbagarden.net/upload/e/ed/SugimoriNetBall.png",
+        "description": "More effective in catching Water or Bug type Pokemon."
+    },
+    {
+        "name":"Dive Ball",
+        "price":10.00,
+        "image":"https://cdn.bulbagarden.net/upload/8/85/SugimoriDiveBall.png",
+        "description": "Works especially well with Pokemon that live underwater."
+    },
+    {
+        "name":"Luxury Ball",
+        "price":10.00,
+        "image":"https://cdn.bulbagarden.net/upload/b/b1/SugimoriLuxuryBall.png",
+        "description": "A comfortable Poke Ball, Pokemon quickly grow friendly after being caught."
+    },
+    {
+        "name":"Premier Ball",
+        "price":20.00,
+        "image":"https://cdn.bulbagarden.net/upload/a/a1/SugimoriPremierBall.png",
+        "description": "Somewhat rare, made as a commerative item used to celebrate an event of some sort."
+    }
+];
+
+        // Code from SmartPhoneProducts3 to display products
+        for(i=0; i<products.length; i++) {
+        document.write(`
+        <h2>${products[i].name}</h2>
+        <h3>$${products[i].price.toFixed(2)}</h3>
+        <img src="${products[i].image}">
+        <p>${products[i].description}</p> 
+        <label>Quantity:</label>
+        <input type="text" id="quantity_textbox${i}" onkeyup="checkQuantityTextbox();">
+    <span id="quantity_textbox_message"></span>     
+    `); // code for textbox from Lab12 order_page.html
+    }
+    
+    
+    
+    </script>
+    
+</main>
+</div>
+<input type="submit" value="BUY" name="purchase_submit_button"s>
+</form>
+<h2>Your One-stop Store</h2>
+</body>
+</html>
