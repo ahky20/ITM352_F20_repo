@@ -1,69 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="product_data.js"></script>    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./product_data.js" type="text/javascript"></script>
 
-    <title>Invoice</title>
+  <title>Invoice</title>
 </head>
-<body>
-    <script>
-        // Product Data
-    var products = [
-    {
-        "name":"Moon Ball",
-        "price":3.00,
-        "image":"https://cdn.bulbagarden.net/upload/0/0e/SugimoriMoonBall.png",
-        "description": "Makes it easier to catch Pokemon that can evolve using a Moon Stone."
-    },
-    {
-        "name":"Friend Ball",
-        "price":3.00,
-        "image":"https://cdn.bulbagarden.net/upload/4/4d/SugimoriFriendBall.png",
-        "description": "Makes Pokemon caught in this Poke Ball more friendly towards you immediately."
-    },
-    {
-        "name":"Net Ball",
-        "price":10.00,
-        "image":"https://cdn.bulbagarden.net/upload/e/ed/SugimoriNetBall.png",
-        "description": "More effective in catching Water or Bug type Pokemon."
-    },
-    {
-        "name":"Dive Ball",
-        "price":10.00,
-        "image":"https://cdn.bulbagarden.net/upload/8/85/SugimoriDiveBall.png",
-        "description": "Works especially well with Pokemon that live underwater."
-    },
-    {
-        "name":"Luxury Ball",
-        "price":10.00,
-        "image":"https://cdn.bulbagarden.net/upload/b/b1/SugimoriLuxuryBall.png",
-        "description": "A comfortable Poke Ball, Pokemon quickly grow friendly after being caught."
-    },
-    {
-        "name":"Premier Ball",
-        "price":20.00,
-        "image":"https://cdn.bulbagarden.net/upload/a/a1/SugimoriPremierBall.png",
-        "description": "Somewhat rare, made as a commerative item used to celebrate an event of some sort."
-    }
-];
-        // code from Invoice4
-        // Prints out invoice rows
-        function generate_item_rows(product_quantities_array) {
-          for (i=0; i < product_quantities_array.length; i++) {
 
-            errs = isNonNegInt(product_quantities_array[i],true) 
-            if(product_quantities_array[i] == 0) {
-              continue;
-            }
-            if(errs.length == 0) {
-          extended_price = products[i].price *  product_quantities_array[i];
+<body>
+  <script>
+    // code edited from Lab12 ex4.html
+    let params = (new URL(document.location)).searchParams;
+    var quantities = [];
+    // if customer wants to buy something
+    if (params.has("quantity_textbox")) {
+      for (i = 0; i < products.length; i++) {
+        if (params.has("quantity_textbox")) {
+          var qty = params.get("quantity_textbox");
+          quantities[i] = qty;
+        }
+      }
+    }
+    // if customer hasn't bought anything
+    else {
+      document.write('You have not purchased anything yet. ');
+    }
+    console.log(quantities);
+
+    // code from Invoice4
+    // Prints out invoice rows
+    function generate_item_rows(product_quantities_array) {
+      for (i = 0; i < product_quantities_array.length; i++) {
+
+        errs = isNonNegInt(product_quantities_array[i], true)
+        if (product_quantities_array[i] == 0) {
+          continue;
+        }
+        if (errs.length == 0) {
+          extended_price = products[i].price * product_quantities_array[i];
           subTotal += extended_price;
-          } else {
-            product_quantities_array[i] = `<span style="color:red;">${product_quantities_array[i]}<br>${errs.join("<br>")}</span>`
-          }
-          document.write(`
+        } else {
+          product_quantities_array[i] = `<span style="color:red;">${product_quantities_array[i]}<br>${errs.join("<br>")}</span>`
+        }
+        document.write(`
       <tr>
         <td width="43%">${products[i].name}</td>
         <td align="center" width="11%">${product_quantities_array[i]}</td>
@@ -73,38 +54,28 @@
       `);
       }
 
-        }
-        // checks if form inputs are valid
-    function isNonNegInt(stringToCheck, returnErrors = false) {
-      errors = []; // assume no errors at first
-      if(Number(stringToCheck) != stringToCheck) errors.push('Not a number!'); // Check if string is a number value
-      if(stringToCheck < 0) errors.push('Negative value!'); // Check if it is non-negative
-      if(parseInt(stringToCheck) != stringToCheck) errors.push('Not an integer!'); // Check that it is an integer
-      return returnErrors ? errors : (errors.length == 0) //simpler way of doing the things commented out below
     }
-    
-    
-// get the quantities from the form somehow        
-var quantities = [1,2,3,4,5,6]
-        
 
-     // Initialize subtotal
-     var subTotal = 0;
+    // Initialize subtotal
+    var subTotal = 0;
 
-     // shipping
-     if (subTotal <= 50) {
-       shipping = 1; // shipping for totals under $50 will be charged $1
-     }
-     else if (subTotal <= 100) {
-       shipping = 3; // shipping for totals $50-$100 will be charged $3
-     }
-     else {
-       shipping = 0.02 * 100; // shipping over $100 will be charged 2% of subtotal
-     }
+    // shipping
+    if (subTotal == 0 ) {
+      document.write('Please purchase an item to see your invoice.')
+      window.stop();
+    if (subTotal <= 50 ) {
+      shipping = 1; // shipping for totals under $50 will be charged $1
+    }
+    else if (subTotal <= 100 ) {
+      shipping = 3; // shipping for totals $50-$100 will be charged $3
+    }
+    else {
+      shipping = 0.02 * 100; // shipping over $100 will be charged 2% of subtotal
+   } 
+}
+  </script>
 
-    </script>
-
-<table border="2">
+  <table border="2">
     <tbody>
       <tr>
         <th style="text-align: center;" width="43%">Item</th>
@@ -112,45 +83,58 @@ var quantities = [1,2,3,4,5,6]
         <th style="text-align: center;" width="13%">price</th>
         <th style="text-align: center;" width="54%">extended price</th>
       </tr>
-    <script>
-    // Product rows
-    generate_item_rows(quantities);
-      
+      <script>
+        // Product rows
+        generate_item_rows(quantities);
 
-    // sales tax and tax rate
-    var taxRate = 0.06;
-    var salesTax = subTotal * taxRate;
 
-    // grand total 
-    var grandTotal = subTotal + salesTax + shipping;
+        // sales tax and tax rate
+        var taxRate = 0.06;
+        var salesTax = subTotal * taxRate;
 
-    </script>
+        // grand total 
+        var grandTotal = subTotal + salesTax + shipping;
+
+      </script>
       <tr>
-      <td colspan="4" width="100%">&nbsp;</td>
+        <td colspan="4" width="100%">&nbsp;</td>
       </tr>
+      <!-- Subtotal -->
       <tr>
-      <td style="text-align: center;" colspan="3" width="67%">Sub-total</td>
-      <td width="54%">$ <script>document.write(subTotal.toFixed(2));</script></td>
+        <td style="text-align: center;" colspan="3" width="67%">Sub-total</td>
+        <td width="54%">$
+          <script>document.write(subTotal.toFixed(2));</script>
+        </td>
       </tr>
+      <!-- Tax Rate -->
       <tr>
-      <td style="text-align: center;" colspan="3" width="67%"><span style="font-family: arial;">Tax @ <script>document.write(taxRate * 100);</script>%</span></td>
-      <td width="54%">$ <script>document.write(salesTax.toFixed(2));</script></td>
+        <td style="text-align: center;" colspan="3" width="67%"><span style="font-family: arial;">Tax @
+            <script>document.write(taxRate * 100);</script>%</span></td>
+        <td width="54%">$
+          <script>document.write(salesTax.toFixed(2));</script>
+        </td>
       </tr>
+      <!-- Shipping -->
       <tr>
-      <td style="text-align: center;" colspan="3" width="67%"><span style="font-family: arial;">Shipping</span></td>
-      <td width="54%">$ <script>document.write(shipping.toFixed(2));</script></td>
+        <td style="text-align: center;" colspan="3" width="67%"><span style="font-family: arial;">Shipping</span></td>
+        <td width="54%">$
+          <script>document.write(shipping.toFixed(2));</script>
+        </td>
       </tr>
+      <!-- Grandtotal -->
       <tr>
-      <td style="text-align: center;" colspan="3" width="67%"><strong>Total</strong></td>
-      <td width="54%"><strong>$ <script>document.write(grandTotal.toFixed(2));</script></strong></td>
+        <td style="text-align: center;" colspan="3" width="67%"><strong>Total</strong></td>
+        <td width="54%"><strong>$
+            <script>document.write(grandTotal.toFixed(2));</script></strong></td>
       </tr>
-  </tbody>
+    </tbody>
   </table>
-  
+
   <b>
     OUR SHIPPING POLICY IS:A subtotal $0 - $49.99 will be $1 shipping
-A subtotal $50 - $99.99 will be $3 shipping
-Subtotals over $100 will be charged 2% of the subtotal amount
+    A subtotal $50 - $99.99 will be $3 shipping
+    Subtotals over $100 will be charged 2% of the subtotal amount
   </b>
 </body>
+
 </html>

@@ -6,7 +6,7 @@ var fs = require('fs');
 var filename = "user_data.json";
 
 app.use(myParser.urlencoded({ extended: true }));
-if(fs.existsSync(filename)) {
+if (fs.existsSync(filename)) {
     data = fs.readFileSync(filename, 'utf-8'); // 'utf-8' makes data readable to user
     //console.log("Success! We got: " + data)
 
@@ -28,7 +28,7 @@ app.get("/login", function (request, response) {
 </body>
     `;
     response.send(str);
- });
+});
 
 app.post("/login", function (request, response) {
     // Process login form POST and redirect to logged in page if ok, back to login page if not
@@ -36,12 +36,10 @@ app.post("/login", function (request, response) {
     POST = request.body;
     user_name_from_form = POST["username"];
     console.log("User name from form=" + user_name_from_form);
-    if (user_data[user_name_from_form] != undefined)
-    {
+    if (user_data[user_name_from_form] != undefined) {
         response.send(`<H3> User ${POST[username]} logged in`);
-    } else 
-    {
-            response.send(`Sorry Buddy`)
+    } else {
+        response.send(`Sorry Buddy`)
     }
     app.get("/register", function (request, response) {
         // Give a simple register form
@@ -57,9 +55,9 @@ app.post("/login", function (request, response) {
     </body>
         `;
         response.send(str);
-     });
-    
-     app.post("/register", function (request, response) {
+    });
+
+    app.post("/register", function (request, response) {
         // process a simple register form
         POST = request.body;
         console.log("Got register POST");
@@ -74,11 +72,10 @@ app.post("/login", function (request, response) {
             fs.writeFileSync(filename, data, "utf-8");
 
             response.send("User " + username + " logged in");
-        } else 
-        {
+        } else {
             response.send("Sorry, try again");
         }
-     });
+    });
 });
 
 app.listen(8080, () => console.log(`listening on port 8080`));
