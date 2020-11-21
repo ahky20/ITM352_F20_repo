@@ -13,12 +13,11 @@
     <link rel="stylesheet" href="productsstyle.css">
     <script src="./product_data.js" type="text/javascript"></script>
     <title>Special Poké Ball Shop</title>
-    <span></span>
 </head>
 
 <body>
     <h1>Special Poké Ball Shop</h1>
-    <form action="/process_form" method="POST">
+    <form name="order_form" action="/process_form" method="POST">
         <div>
             <main>
                 <script>
@@ -26,12 +25,12 @@
                     // Code from SmartPhoneProducts3 to display products
                     for (i = 0; i < products.length; i++) {
                         document.write(`
-        <h2>${products[i].name}</h2>
+        <h2>${products[i].type}</h2>
         <h3>$${products[i].price.toFixed(2)}</h3>
         <img src="${products[i].image}">
         <p>${products[i].description}</p> 
         <label>Quantity:</label>
-        <input type="text" id="quantity_textbox${i}" onkeyup="checkQuantityTextbox(this);">
+        <input type="text" name="quantity${i}" onkeyup="checkQuantityTextbox(this);">
          
     `); // code for textbox from Lab12 order_page.html
                     }
@@ -40,7 +39,7 @@
 
             </main>
         </div>
-        <input type="submit" value="BUY" name="purchase_submit_button" s>
+        <input type="submit" value="BUY" name="purchase_submit_button">
     </form>
     
 </body>

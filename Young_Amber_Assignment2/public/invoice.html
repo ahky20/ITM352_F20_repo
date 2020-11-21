@@ -14,11 +14,11 @@
     // code edited from Lab12 ex4.html
     let params = (new URL(document.location)).searchParams;
     var quantities = [];
-    // if customer wants to buy something
+    // if customer wants/planning to buy something
     if (params.has("quantity_textbox")) {
       for (i = 0; i < products.length; i++) {
-        if (params.has("quantity_textbox")) {
-          var qty = params.get("quantity_textbox");
+        if (params.has(`quantity${i}`)) {
+          var qty = params.get(`quantity${i}`);
           quantities[i] = qty;
         }
       }

@@ -16,7 +16,7 @@ form {
   /* Set a style for all buttons */
   button {
     background-color: #4CAF50;
-    color: white;
+    color: lightgoldenrodyellow;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -68,4 +68,8 @@ form {
     .cancelbtn {
       width: 100%;
     }
+  }
+  /* Change the background color */
+  body {
+    background-color: rgb(164, 238, 252);
   }
