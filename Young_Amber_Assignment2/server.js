@@ -6,6 +6,8 @@ var data = require('./public/product_data.js'); // use data from product_data.js
 var products = data.products;
 var fs = require('fs');
 var filename = "user_data.json";
+var queryString = require('query-string');
+
 
 app.use(express.static('./public'));
 app.use(myParser.urlencoded({ extended: true }));
@@ -13,14 +15,15 @@ app.use(myParser.urlencoded({ extended: true }));
 // function to process quantity form from lab13 info_server_ex4.js
 function process_quantity_form(POST, response) {
   if (typeof POST['purchase_submit_button'] != 'undefined') {
-    var contents = fs.readFileSync('./public/invoice.html', 'utf8');
+    var contents = fs.open('./public/invoice.html', 'utf8');
     receipt = '';
     for (i in products) {
       let q = POST[`quantity${i}`];
       let model = products[i]['type'];
       let model_price = products[i]['price'];
       if (isNonNegInt(q)) {
-        response.redirect("/process_form"); // take user to invoice.html
+        stringified = queryString.stringify(request.body);
+        response.redirect("/invoice.html?" + stringified); // take user to invoice.html
       }
       else {
         receipt += `<h3><font color="red">${q} is not a valid quantity for ${model}!</font></h3>`;
@@ -35,7 +38,7 @@ app.post("/process_form", function (request, response) {
   console.log("Got POST process_form") // debug statement
   let POST = request.body;
   process_quantity_form(POST, response);
-  response.redirect("login");
+  response.redirect("/invoice.html");
 }
 );
 
@@ -97,7 +100,7 @@ app.post("/login", function (request, response) {
   } else {
     response.send(`Sorry Buddy`)
   }
-  
+
   app.get("/register", function (request, response) {
     // Give a simple register form
     str = `
