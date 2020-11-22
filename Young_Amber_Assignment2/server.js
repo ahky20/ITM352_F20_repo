@@ -15,20 +15,25 @@ app.use(myParser.urlencoded({ extended: true }));
 function formValidation() {
   var uid = document.registration.userid;
   var passid = document.registration.passid;
+  var confirmpassid = document.registration.confirmpassid;
   var uname = document.registration.username;
   var uadd = document.registration.address;
   var ucountry = document.registration.country;
   var uzip = document.registration.zip;
   var uemail = document.registration.email;
   var umsex = document.registration.msex;
-  var ufsex = document.registration.fsex; if (userid_validation(uid, 5, 12)) {
-    if (passid_validation(passid, 7, 12)) {
-      if (allLetter(uname)) {
-        if (alphanumeric(uadd)) {
-          if (countryselect(ucountry)) {
-            if (allnumeric(uzip)) {
-              if (ValidateEmail(uemail)) {
-                if (validsex(umsex, ufsex)) {
+  var ufsex = document.registration.fsex;
+
+  if (userid_validation(uid, 4, 10)) { // usernames should be between 4-10 characters
+    if (passid_validation(passid, 6, 12)) { // passwords should be between 6-12 characters
+      if (confirm_passid(confirmpassid == passid)) {
+        if (allLetter(uname, 1, 30)) { // full names should not be more than 30 characters
+          if (alphanumeric(uadd)) {
+            if (countryselect(ucountry)) {
+              if (allnumeric(uzip)) {
+                if (ValidateEmail(uemail)) {
+                  if (validsex(umsex, ufsex)) {
+                  }
                 }
               }
             }
@@ -38,7 +43,7 @@ function formValidation() {
     }
   }
   return false;
-
+// validate username
 } function userid_validation(uid, mx, my) {
   var uid_len = uid.value.length;
   if (uid_len == 0 || uid_len >= my || uid_len < mx) {
@@ -48,6 +53,7 @@ function formValidation() {
   }
   return true;
 }
+// validate password
 function passid_validation(passid, mx, my) {
   var passid_len = passid.value.length;
   if (passid_len == 0 || passid_len >= my || passid_len < mx) {
@@ -57,6 +63,16 @@ function passid_validation(passid, mx, my) {
   }
   return true;
 }
+// validate confirm password
+function confirm_passid(confirmpassid) {
+  if (confirmpassid != passid) {
+    alert("Passwords must match");
+    confirmpassid.focus();
+    return false;
+  }
+    return true;
+}
+// validate fullname
 function allLetter(uname) {
   var letters = /^[A-Za-z]+$/;
   if (uname.value.match(letters)) {
@@ -68,6 +84,7 @@ function allLetter(uname) {
     return false;
   }
 }
+// validate address
 function alphanumeric(uadd) {
   var letters = /^[0-9a-zA-Z]+$/;
   if (uadd.value.match(letters)) {
@@ -79,6 +96,7 @@ function alphanumeric(uadd) {
     return false;
   }
 }
+// validate country
 function countryselect(ucountry) {
   if (ucountry.value == "Default") {
     alert('Select your country from the list');
@@ -89,6 +107,7 @@ function countryselect(ucountry) {
     return true;
   }
 }
+// validate zip code
 function allnumeric(uzip) {
   var numbers = /^[0-9]+$/;
   if (uzip.value.match(numbers)) {
@@ -100,6 +119,7 @@ function allnumeric(uzip) {
     return false;
   }
 }
+// validate email
 function ValidateEmail(uemail) {
   var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   if (uemail.value.match(mailformat)) {
@@ -110,6 +130,7 @@ function ValidateEmail(uemail) {
     uemail.focus();
     return false;
   }
+  // validate gender
 } function validsex(umsex, ufsex) {
   x = 0;
 
