@@ -11,6 +11,31 @@ var queryString = require('query-string');
 app.use(express.static('./public'));
 app.use(myParser.urlencoded({ extended: true }));
 
+app.post("/process_form", function (request, response) {
+  console.log("Got POST process_form") // debug statement
+  let POST = request.body;
+
+
+// function to process quantity form from lab13 info_server_ex4.js
+  if (typeof POST['purchase_submit_button'] != 'undefined') {
+    //receipt = '';
+    for (i in products) {
+      let q = POST[`quantity${i}`];
+      let model = products[i]['type'];
+      let model_price = products[i]['price'];
+      if (isNonNegInt(q)) {
+        stringified = queryString.stringify(request.body);
+        response.redirect("./invoice.html?" + stringified); // take user to invoice.html
+      }
+      else {
+        receipt += `<h3><font color="red">${q} is not a valid quantity for ${model}!</font></h3>`;
+      }
+    }
+    response.send(receipt);
+    //response.end();
+  }
+}
+);
 // register form validation code from w3resource
 function formValidation() {
   var userid = document.registration.userid;
@@ -89,40 +114,7 @@ function ValidateEmail(useremail) {
     return false;
   }
 }
-  
 
-
-app.post("")
-
-app.post("/process_order", function (request, response) {
-  console.log("Got POST process_order") // debug statement
-  let POST = request.body;
-  process_quantity_form(POST, response);
-  //response.redirect("/invoice.html");
-}
-);
-
-// function to process quantity form from lab13 info_server_ex4.js
-function process_quantity_form(POST, response) {
-  if (typeof POST['purchase_submit_button'] != 'undefined') {
-    //var contents = fs.open('./public/invoice.html', 'utf8');
-    receipt = '';
-    for (i in products) {
-      let q = POST[`quantity${i}`];
-      let model = products[i]['type'];
-      let model_price = products[i]['price'];
-      if (isNonNegInt(q)) {
-        stringified = queryString.stringify(request.body);
-        response.redirect("./invoice.html?" + stringified); // take user to invoice.html
-      }
-      else {
-        receipt += `<h3><font color="red">${q} is not a valid quantity for ${model}!</font></h3>`;
-      }
-    }
-    response.send(receipt);
-    //response.end();
-  }
-}
 
 // check for invalid inputs such as negative values or non integers
 function isNonNegInt(stringToCheck, returnErrors = false) {
