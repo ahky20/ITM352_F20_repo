@@ -18,5 +18,10 @@
         "name": "Jow Schmo",
         "password": "pass",
         "email": "joe@jot.com"
+    },
+    "ahky":{
+        "name": "Amber Young",
+        "password": "pokemart",
+        "email": "ahky2000@hawaii.edu"
     }
 }

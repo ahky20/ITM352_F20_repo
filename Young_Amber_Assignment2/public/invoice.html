@@ -15,7 +15,7 @@
     let params = (new URL(document.location)).searchParams;
     var quantities = [];
     // if customer wants/planning to buy something
-    if (params.has("quantity_textbox")) {
+    if (params.has("purchase_submit_button")) {
       for (i = 0; i < products.length; i++) {
         if (params.has(`quantity${i}`)) {
           var qty = params.get(`quantity${i}`);
@@ -28,7 +28,6 @@
       document.write('You have not purchased anything yet. ');
     }
     console.log(quantities);
-
     // code from Invoice4
     // Prints out invoice rows
     function generate_item_rows(product_quantities_array) {
@@ -55,7 +54,6 @@
       }
 
     }
-
     // Initialize subtotal
     var subTotal = 1;
 
@@ -106,7 +104,7 @@
           <script>document.write(subTotal.toFixed(2));</script>
         </td>
       </tr>
-      <!-- Tax Rate -->
+      <!-- Tax Rate and Sales Tax -->
       <tr>
         <td style="text-align: center;" colspan="3" width="67%"><span style="font-family: arial;">Tax @
             <script>document.write(taxRate * 100);</script>%</span></td>
@@ -129,13 +127,16 @@
       </tr>
     </tbody>
   </table>
-
+<!-- Shipping Policy -->
   <b>
     OUR SHIPPING POLICY IS:A subtotal $0 - $49.99 will be $1 shipping
+    <br>
     A subtotal $50 - $99.99 will be $3 shipping
+    <br>
     Subtotals over $100 will be charged 2% of the subtotal amount
   </b>
-  Thank you for shopping with us, 
+  <br>
+  Thank you for shopping with us. We hope to see you again soon!
 </body>
 
 </html>

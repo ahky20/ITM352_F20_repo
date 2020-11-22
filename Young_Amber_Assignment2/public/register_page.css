@@ -1,6 +1,7 @@
 /* code from w3resource.com
 https://www.w3resource.com/javascript/form/javascript-sample-registration-form-validation.php
 */
+
 h1 {
     margin-left: 70px;
     }
@@ -39,9 +40,5 @@ h1 {
     p {
     margin-left: 70px;
     font-weight: bold;
-    }
-
-    body {
-        background-color: lightsteelblue;
     }
     
