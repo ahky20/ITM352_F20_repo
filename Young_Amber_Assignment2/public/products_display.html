@@ -21,7 +21,13 @@
         <div>
             <main>
                 <script>
-
+                    // check for valid quantities in textbox
+                    function checkQuantityTextbox(theTextbox) {
+                        errs = isNonNegInt(theTextbox.value, true);
+                        if (errs.length == 0) errs = ['Quantity:'];
+                        if (theTextbox.value.trim() == '') errs = ['Quantity:'];
+                        document.getElementById(theTextbox.name + '_label').innerHTML = errs.join(", ");
+                    }
                     // Code from SmartPhoneProducts3 to display products
                     for (i = 0; i < products.length; i++) {
                         document.write(`
@@ -29,8 +35,8 @@
         <h3>$${products[i].price.toFixed(2)}</h3>
         <img src="${products[i].image}">
         <p>${products[i].description}</p> 
-        <label>Quantity:</label>
-        <input type="text" name="quantity${i}" onkeyup="checkQuantityTextbox();">
+        <label id="quantity${i}_label"}">Quantity:</label>
+        <input type="text" name="quantity${i}" onkeyup="checkQuantityTextbox(this);">
     `); // code for textbox from Lab12 order_page.html
                     }
 
