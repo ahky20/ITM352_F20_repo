@@ -88,7 +88,7 @@ app.post("/register", function (request, response) {
   // validate confirm password (make sure it matches)
   if (POST['password'] == POST['confirmpassword']) {
     console.log('password and confirm password OK');
-  } else{
+  } else {
     register_errors.push('Please check that passwords match');
   }
 
@@ -105,7 +105,7 @@ app.post("/register", function (request, response) {
     register_errors.push('Invalid email');
   }
 
-// if everything's OK then register user
+  // if everything's OK then register user
   if (register_errors.length == 0) { // no registration errors exist
     // add registered user data to file
     username = POST["username"];
@@ -139,15 +139,15 @@ app.post("/process_form", function (request, response) {
       var model_price = products[i]['price'];
       has_quantities = has_quantities || q > 0;
       valid_quantities = has_quantities && isNonNegInt(q);
-      }
-      if (has_quantities && valid_quantities) {
-        response.redirect("./invoice.html?" + stringified); // take user to invoice.html
-      }
-      else {
-        receipt += `<h3><font color="red">${q} is not a valid quantity for ${model}!</font></h3>`;
-      }
-    
-    
+    }
+    if (has_quantities && valid_quantities) {
+      response.redirect("./invoice.html?" + stringified); // take user to invoice.html
+    }
+    else {
+      receipt += `<h3><font color="red">${q} is not a valid quantity for ${model}!</font></h3>`;
+    }
+
+
     //response.send(receipt);
     //response.end();
   }
