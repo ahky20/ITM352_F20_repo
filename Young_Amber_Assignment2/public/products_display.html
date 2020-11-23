@@ -36,7 +36,7 @@
         <img src="${products[i].image}">
         <p>${products[i].description}</p> 
         <label id="quantity${i}_label"}">Quantity:</label>
-        <input type="text" name="quantity${i}" onkeyup="checkQuantityTextbox(this);">
+        <input type="text" name="quantity${i}" placeholder="0" onkeyup="checkQuantityTextbox(this);">
     `); // code for textbox from Lab12 order_page.html
                     }
 
@@ -45,7 +45,9 @@
             </main>
             <!-- Submit Button to purchase items -->
         </div>
-        <input type="submit" value="BUY" name="purchase_submit_button">
+        
+        <input type="submit" value="BUY" name="purchase_submit_button" >
+        
     </form>
 
 </body>

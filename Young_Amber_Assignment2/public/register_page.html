@@ -19,35 +19,35 @@
     <br>
     Please in fill this form to create an account. Upon successful registration, you will be directed to your invoice.
     <br>
-    <form name='registration' action="formValidation();" method="POST">
+    <form name='registration' action="process_register" method="POST">
         <!-- Username Input -->
         <div class="container">
-            <label for="userid">Username:</label>
-            <input type="text" name="userid" size="12" />
+            <label for="username">Username:</label>
+            <input type="text" name="username" size="40" placeholder="4-10 characters, letters and numbers only"/>
         </div>
         <br>
         <!-- Password Input-->
         <div class="container">
-            <label for="passid">Password:</label>
-            <input type="password" name="passid" size="12" />
+            <label for="password">Password:</label>
+            <input type="password" name="password" size="20" placeholder="minimum 6 characters"/>
         </div>
         <br>
         <!-- Confirm Password Input-->
         <div class="container">
             <label for="confirmpass">Confirm Password:</label>
-            <input type="password" name="confirmpassid" size="12" />
+            <input type="password" name="confirmpassword" size="30" placeholder="must match above password"/>
         </div>
         <br>
         <!-- Full Name Input -->
         <div class="container">
             <label for="username">Name:</label>
-            <input type="text" name="username" size="50" />
+            <input type="text" name="fullname" size="50" placeholder="fullname here, no more than 30 characters if possible"/>
         </div>
         <br>
         <!-- Email Input -->
         <div class="container">
             <label for="email">Email:</label>
-            <input type="text" name="email" size="50" />
+            <input type="text" name="email" size="50" placeholder="enter valid email"/>
         </div>
         <br>
         <!-- Submit Registration Form Button -->
