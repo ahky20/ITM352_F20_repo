@@ -5,6 +5,16 @@
 <html lang="en">
 
 <head>
+    <script>
+        let params = (new URL(document.location)).searchParams;
+
+        window.onload = function() {
+            if (params.has('register_errors')) {
+                console.log("Invalid");
+                alert('Fix the following errors: \n' + params.get('register_errors'));
+            }
+        }
+    </script>
     <meta charset="utf-8">
     <title>Registration Form</title>
     <meta name="keywords" content="example, JavaScript Form Validation, Sample registration form" />

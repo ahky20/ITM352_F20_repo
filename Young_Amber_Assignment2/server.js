@@ -54,11 +54,11 @@ app.post("/process_login", function (request, response) {
     request.query.name = user_data[user_name_from_form].name;
     request.query.login_error = login_error.join(';');
   }
-  response.redirect('./login_page.html?' + queryString.stringify(request.query));
+  response.redirect('./login_page.html?' + stringified);
 });
 // code to process registration
 app.post("/process_register", function (request, response) {
-  POST = request.body;
+  let POST = request.body;
   console.log("Got register POST");
   var register_errors = [];
   var stringified = queryString.stringify(POST);
