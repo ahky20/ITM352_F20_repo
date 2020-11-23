@@ -57,7 +57,7 @@ app.post("/process_login", function (request, response) {
   response.redirect('./login_page.html?' + queryString.stringify(request.query));
 });
 // code to process registration
-app.post("/register", function (request, response) {
+app.post("/process_register", function (request, response) {
   POST = request.body;
   console.log("Got register POST");
   var register_errors = [];
@@ -118,7 +118,8 @@ app.post("/register", function (request, response) {
     fs.writeFileSync(filename, data, "utf-8");
 
     response.redirect('./invoice.html?' + stringified);
-  } else {
+  } 
+  if (register_errors.length == 0) {
     response.send("Sorry, try again");
   }
 });
@@ -134,17 +135,17 @@ app.post("/process_form", function (request, response) {
     var has_quantities = true;
     var valid_quantities = false;
     for (i in products) {
-      var q = POST[`quantity${i}`];
+      var qty = POST[`quantity${i}`];
       var model = products[i]['type'];
       var model_price = products[i]['price'];
-      has_quantities = has_quantities || q > 0;
-      valid_quantities = has_quantities && isNonNegInt(q);
+      has_quantities = has_quantities || qty > 0;
+      valid_quantities = has_quantities && isNonNegInt(qty);
     }
     if (has_quantities && valid_quantities) {
       response.redirect("./invoice.html?" + stringified); // take user to invoice.html
     }
     else {
-      receipt += `<h3><font color="red">${q} is not a valid quantity for ${model}!</font></h3>`;
+      receipt += `<h3><font color="red">${qty} is not a valid quantity for ${model}!</font></h3>`;
     }
 
 
