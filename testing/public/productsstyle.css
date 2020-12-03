@@ -1,0 +1,46 @@
+/* General */  
+body {
+    width:900px; 
+    margin: 0 auto;
+    background-color:powderblue;
+    float: center;
+}
+
+img {
+    float: center;
+    border: 1px solid #ddd;
+            /* Gray border */
+            border-radius: 4px;
+            /* Rounded border */
+            padding: 5px;
+            /* Some padding */
+            width: 150px;
+            /* Set a small width */
+}
+ /* Add a hover effect (blue shadow) */
+ img:hover {
+    box-shadow: 0 0 5px 1px black;
+ }
+
+p {
+    font: Arial;
+    font-size: 3ww;
+    float: center;
+    width: 200px;
+}
+
+h1 {
+    float: center;
+}
+
+h2 {
+    float: center;
+}
+
+/* Remove the navbar's default margin-bottom and rounded borders 
+code taken and edited from w3schools website bootstrap template*/ 
+.navbar {
+    float: right;
+    margin-bottom: 0;
+    border-radius: 0;
+  }

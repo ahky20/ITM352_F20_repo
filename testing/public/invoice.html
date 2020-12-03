@@ -3,16 +3,16 @@
   // code edited from Lab12 ex4.html
   let params = (new URL(document.location)).searchParams;
   // if user is logged in
-  if (params.has('username')) {
+  /*if (params.has('username')) {
     document.write(`Invoice for ${params.get('username')}. `);
   } else { // make user login or register
     alert('Please login or register to see your invoice');
     window.location = `./login_page.html${document.location.search}`;
     window.stop;
-  }
+  }*/
   var quantities = [];
   // if customer wants/planning to buy something
-  if (params.has("purchase_submit_button")) {
+  if (params.has("checkOut")) {
     for (i = 0; i < products.length; i++) {
       if (params.has(`quantity${i}`)) {
         q = params.get(`quantity${i}`);
@@ -24,8 +24,7 @@
   else {
     document.write('You have not purchased anything yet. ');
   }
-  console.log(quantities); // log quantities in console 
-  
+  console.log(quantities); // log quantities in console
 </script>
 <!DOCTYPE html>
 <html lang="en">

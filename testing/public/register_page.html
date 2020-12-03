@@ -1,0 +1,81 @@
+<!-- code from w3resource.com
+    https://www.w3resource.com/javascript/form/javascript-sample-registration-form-validation.php
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            background-color: lightsteelblue;
+        }
+    </style>
+    <script>
+        let params = (new URL(document.location)).searchParams;
+
+        window.onload = function() {
+            if (params.has('register_errors')) {
+                console.log("Invalid");
+                alert('Fix the following errors: \n' + params.get('register_errors'));
+            }
+        }
+    </script>
+    <meta charset="utf-8">
+    <title>Registration Form</title>
+    <meta name="keywords" content="example, JavaScript Form Validation, Sample registration form" />
+    <meta name="description"
+        content="This document is an example of JavaScript Form Validation using a sample registration form. " />
+    <link rel='stylesheet' href='js-form-validation.css' type='text/css' />
+    <script src="server.js"></script>
+</head>
+
+<body>
+    <h1>Registration Form</h1>
+    <br>
+    Please in fill this form to create an account. Upon successful registration, you will be directed to your invoice.
+    <br>
+    <form name='registration' action="process_register" method="POST">
+        <!-- Username Input -->
+        <div class="container">
+            <label for="username">Username:</label>
+            <input type="text" name="username" size="40" placeholder="4-10 characters, letters and numbers only"/>
+        </div>
+        <br>
+        <!-- Password Input-->
+        <div class="container">
+            <label for="password">Password:</label>
+            <input type="password" name="password" size="20" placeholder="minimum 6 characters"/>
+        </div>
+        <br>
+        <!-- Confirm Password Input-->
+        <div class="container">
+            <label for="confirmpass">Confirm Password:</label>
+            <input type="password" name="repeat_password" size="30" placeholder="must match above password"/>
+        </div>
+        <br>
+        <!-- Full Name Input -->
+        <div class="container">
+            <label for="username">Name:</label>
+            <input type="text" name="fullname" size="50" placeholder="fullname here, no more than 30 characters if possible"/>
+        </div>
+        <br>
+        <!-- Email Input -->
+        <div class="container">
+            <label for="email">Email:</label>
+            <input type="text" name="email" size="50" placeholder="enter valid email"/>
+        </div>
+        <br>
+        <!-- Submit Registration Form Button -->
+        <div class="container">
+            <input type="submit" name="register" value="Submit" />
+        </div>
+        <br>
+        <!-- Clicking the cancel button takes user back to products page-->
+        <div class="container" >
+            <a href="products_display.html">
+                <button type="button" class="cancelbtn">Cancel</button>
+            </a>
+    </form>
+</body>
+
+</html>
