@@ -38,6 +38,7 @@ app.get("/use_cookie", function (request, response) {
         output = `Welcome to the Use Cookie page ${request.cookies.myname}`
     }
     response.send(output);
+    session.destroy();
 });
 // exercise 2
 app.get("/use_session", function (request, response) {
@@ -70,7 +71,7 @@ app.post("/login", function (request, response) {
     if (user_data[user_name_from_form] != undefined) {
         // response.send(`<H3> User ${POST[username]} logged in`);
         if (typeof request.session.last_login != 'undefined') {
-            var msg = `You last loggied in at ${request.session.last_login}`;
+            var msg = `You last logged in at ${request.session.last_login}`;
             var now = new Date();
         } else {
             var msg = '';
