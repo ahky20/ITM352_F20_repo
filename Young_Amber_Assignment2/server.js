@@ -32,7 +32,7 @@ app.post("/process_login", function (request, response) {
   var stringified = queryString.stringify(request.query);
   user_name_from_form = request.body.username.toLowerCase();
   console.log("User name from form=" + user_name_from_form);
-  if (typeof user_data[user_name_from_form] != 'undefined') {
+  if ( user_data[user_name_from_form] != 'undefined') {
     if (user_data[user_name_from_form].password == request.body.password) {
       request.query.username = user_name_from_form;
       console.log(user_data[request.query.username].name);
@@ -53,7 +53,7 @@ app.post("/process_login", function (request, response) {
     request.query.name = user_data[user_name_from_form].name;
     request.query.login_error = login_error.join(';');
   }
-  response.redirect('./login_page.html?' + stringified);
+  response.redirect('./invoice.html?' + stringified);
 });
 // code to process registration
 app.post("/process_register", function (request, response) {
