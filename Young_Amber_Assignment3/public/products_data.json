@@ -1,0 +1,70 @@
+{
+    "standard":[
+        {
+            "name": "Poké Ball",
+            "price": 1.00,
+            "image": "https://cdn.bulbagarden.net/upload/a/a6/SugimoriPokeBall.png",
+            "description": "A device for catching wild Pokémon. It is thrown like a ball at a Pokémon, comfortably encapsulating its target."
+        },
+        {
+            "name": "Great Ball",
+            "price": "6.00",
+            "image": "https://cdn.bulbagarden.net/upload/0/06/SugimoriGreatBall.png",
+            "description": "A good, high-performance Poké Ball that provides a higher success rate for catching Pokémon than a standard Poké Ball."
+        },
+        {
+            "name": "Ultra Ball",
+            "price": "12.00",
+            "image": "https://cdn.bulbagarden.net/upload/2/26/SugimoriUltraBall.png",
+            "description": "An ultra-high-performance Poké Ball that provides a higher success rate for catching Pokémon than a Great Ball."
+        }
+    ],
+    "exclusive": [
+        {
+            "name": "Net Ball",
+            "price": 10.00,
+            "image": "https://cdn.bulbagarden.net/upload/e/ed/SugimoriNetBall.png",
+            "description": "More effective in catching Water or Bug type Pokémon."
+        },
+        {
+            "name": "Dive Ball",
+            "price": 10.00,
+            "image": "https://cdn.bulbagarden.net/upload/8/85/SugimoriDiveBall.png",
+            "description": "Works especially well with Pokémon that live underwater."
+        },
+        {
+            "name": "Luxury Ball",
+            "price": 10.00,
+            "image": "https://cdn.bulbagarden.net/upload/b/b1/SugimoriLuxuryBall.png",
+            "description": "A comfortable Poké Ball, Pokémon quickly grow friendly after being caught."
+        }
+    ],
+    "kurt": [
+        {
+            "name": "Moon Ball",
+            "price": 3.00,
+            "image": "https://cdn.bulbagarden.net/upload/0/0e/SugimoriMoonBall.png",
+            "description": "Makes it easier to catch Pokémon that can evolve using a Moon Stone."
+        },
+        {
+            "name": "Friend Ball",
+            "price": 3.00,
+            "image": "https://cdn.bulbagarden.net/upload/4/4d/SugimoriFriendBall.png",
+            "description": "Makes Pokémon caught in this Poké Ball more friendly towards you immediately."
+        }
+    ],
+    "event": [
+        {
+            "name": "Premier Ball",
+            "price": 20.00,
+            "image": "https://cdn.bulbagarden.net/upload/a/a1/SugimoriPremierBall.png",
+            "description": "Somewhat rare, made as a commerative item used to celebrate an event of some sort."
+        },
+        {
+            "name": "Cherish Ball",
+            "price": 50.00,
+            "image": "https://cdn.bulbagarden.net/upload/2/2d/SugimoriCherishBall.png",
+            "description": "A quite rare Poké Ball that has been specially crafted to commemorate an occasion of some sort."
+        }
+    ]
+}
