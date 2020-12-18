@@ -2,15 +2,21 @@
 var express = require('express');
 var app = express(); // object to initialize express
 var myParser = require("body-parser");
-var data = require('./public/product_data.js'); // use data from product_data.js
+var data = require('./products.json'); // use data from product_data.js
 var products = data.products;
 var fs = require('fs');
 var filename = "user_data.json";
 var queryString = require('query-string');
+var session = require('express-session');
 
 
-app.use(express.static('./public'));
 app.use(myParser.urlencoded({ extended: true }));
+app.use(session({secret: "PokeBall Shopping"}));
+
+app.all('*', function (request, response, next) {
+  response.send(request.method + ' to path ' + request.path);
+  next();
+});
 
 // code from lab14 ProcessLogin.js
 if (fs.existsSync(filename)) {
@@ -164,9 +170,21 @@ function isNonNegInt(stringToCheck, returnErrors = false) {
   return returnErrors ? errors : (errors.length == 0)
 }
 
-app.all('*', function (request, response, next) {
-  response.send(request.method + ' to path ' + request.path);
-  next();
+app.post("/get_products_data", function (request, response) {
+  response.json(products_data);
 });
 
+app.get("/add_to_cart", function (request, response) {
+  var products_key = request.query['products_key']; // get the product key sent from the form post
+  var quantities = request.query['quantities'].map(Number); // Get quantities from the form post and convert strings from form post to numbers
+  request.session.cart[products_key] = quantities; // store the quantities array in the session cart object with the same products_key. 
+  response.redirect('./cart.html');
+});
+
+app.get("/get_cart", function (request, response) {
+  response.json(request.session.cart);
+});
+
+
+app.use(express.static('./public'));
 app.listen(8080, () => console.log(`listening on port 8080`)); 

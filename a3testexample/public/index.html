@@ -1,0 +1,57 @@
+<!--
+    Created by: Amber Young
+    Date Created: November 27, 2020
+    Starting page for A3
+    Gives user information about the website and directs them to product pages
+-->
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press Start 2P">
+    <script src="./functions.js"></script> 
+    <script>
+    var products_data;
+    loadJSON('get_products_data', function(response) {
+         // Parsing JSON string into object
+         products_data = JSON.parse(response);
+    });
+    var this_product_key = ''
+    </script>
+        <title>Poké Ball Shop Home Page</title>
+
+    </head>
+    <body>
+        <style>
+            h1 {
+                background: white;
+                padding-top: 10px;
+            }
+            body {
+                text-align: center;
+                background: skyblue;
+                font-family: "Press Start 2P";
+            }
+            p {
+                padding-left: 100px;
+                padding-right: 100px;
+                background: white;
+            }
+        </style>
+        <h1>Welcome to the Poké Ball Shop! <br>
+    <img src="https://cdn.bulbagarden.net/upload/f/ff/Smash_Bros_Brawl_Pokemon_Symbol.png">    
+    </h1>
+    <h2>About Us</h2>
+    <p>
+        Tired of having to travel all across the region just to get that one specific type of Poké Ball? Well fear not Trainers! Our selection of Poké Balls makes restocking a breeze! Just scroll down to see what we have!
+    </p>
+    <p>
+
+    </p>
+        Go to: <br>
+        
+    <script> 
+    for (let products_key in products_data) {
+        if (products_key == this_product_key) continue;
+        document.write(`<a href='./display_products.html?products_key=${products_key}'>${products_key}<a><br>`);
+    }</script>
+    </ul>
+    </body>
+    </html>

@@ -1,0 +1,98 @@
+<!--
+    Created by: Amber Young
+    Date Created: November 27, 2020
+    Followed along with Prof. Port's Starting A3 Workshop 
+    Adapted code to change the candy store to a poke ball store
+-->
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press Start 2P">
+    <script src="./functions.js"></script>
+    <script>
+
+        // get the query string
+        let params = (new URL(document.location)).searchParams;
+        if (params.has('products_key')) {
+            var products_key = params.get('products_key');
+        } else {
+            document.write("let's get shopping! click on one of the links below to get started!");
+            document.stop;
+        }
+
+        var products_data;
+        loadJSON('get_products_data', function (response) {
+            // Parsing JSON string into object
+            products_data = JSON.parse(response);
+        });
+        loadJSON('get_cart', function (response) {
+            // Parsing JSON string into object
+            shopping_cart = JSON.parse(response);
+            for (pk in shopping_cart) {
+                total += shopping_cart[pk].reduce((a, b) => a + b);
+            }
+        });
+    </script>
+</head>
+<center>
+    <a href="index.html">home</a>&nbsp&nbsp;
+    <script> nav_bar(products_key, products_data);
+
+    </script>
+    <a href="login_page.html">login/register</a>
+</center>
+
+<script>
+
+    // This function takes a string assumed to be a key in the products array above to display and select the corresponding products
+    var order_str = '';
+    // get the particular products to display
+    products = products_data[products_key];
+    if (params.has('Submit')) {
+        // grab the quantities from the query string
+        order_str = 'Your order is:<br>';
+        for (i = 0; i < products.length; i++) {
+            order_str += `You purchasesd ${params.get(`quantities[${i}]`)} ${products[i]['name']}<br>`;
+        }
+    } else {
+        order_str += `<h1>${products_key} poké balls</h1><br>`;
+        // We put the whole table in the form so that anything entered in it will get submitted
+        order_str += `
+            <FORM action="" method="GET">
+            <INPUT TYPE="HIDDEN" NAME="products_key" VALUE="${products_key}">
+                <TABLE BORDER>
+                    <TR>
+                        <TD><B><BIG>Image</TD>
+                        <TD><B><BIG>Name</TD>
+                        <TD><B><BIG>Description</TD>
+                        <TD><B><BIG>Price</TD>
+                        <TD><B><BIG>Quantity Desired</TD></TR>`;
+
+        for (i = 0; i < products.length; i++) {
+            order_str += `
+            <TR>
+                <TD><img src="${products[i].image}"></TD>
+                <TD>${products[i]['name']}</TD>
+                <TD>${products[i]['description']}</TD>
+                <TD>${products[i]['price'].toFixed(2)}</TD>
+                <TD>
+                <INPUT TYPE="TEXT"  name="quantities[${i}]"></TD></TR>`;
+        }
+        order_str += `</TABLE><br>
+<INPUT TYPE="SUBMIT"  name="Submit" value="Select">
+</FORM>`;
+    } // this closes the else for the form and table display
+    document.write(order_str);
+</script>
+
+<!--Style for the page-->
+<style>
+    body {
+        background-color: skyblue;
+        font-family: "Press Start 2P";
+    }
+    img {
+        width: 150px;
+    }
+    table {
+        background-color: snow;
+    }
+</style>

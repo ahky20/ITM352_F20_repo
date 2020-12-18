@@ -8,13 +8,13 @@
         },
         {
             "name": "Great Ball",
-            "price": "6.00",
+            "price": 6.00,
             "image": "https://cdn.bulbagarden.net/upload/0/06/SugimoriGreatBall.png",
             "description": "A good, high-performance Poké Ball that provides a higher success rate for catching Pokémon than a standard Poké Ball."
         },
         {
             "name": "Ultra Ball",
-            "price": "12.00",
+            "price": 12.00,
             "image": "https://cdn.bulbagarden.net/upload/2/26/SugimoriUltraBall.png",
             "description": "An ultra-high-performance Poké Ball that provides a higher success rate for catching Pokémon than a Great Ball."
         }
@@ -39,7 +39,7 @@
             "description": "A comfortable Poké Ball, Pokémon quickly grow friendly after being caught."
         }
     ],
-    "kurt": [
+    "apricorn": [
         {
             "name": "Moon Ball",
             "price": 3.00,

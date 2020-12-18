@@ -1,0 +1,43 @@
+<!--
+    File copied from A2
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login_page.css">
+    <title>Login Page</title>
+</head>
+
+<body>
+    <!-- Code used and slightly edited for login page taken from w3schools -->
+    <form name="loginPage" action="process_login" method="POST">
+        <div class="imgcontainer">
+            <img src="https://static.thenounproject.com/png/594337-200.png" alt="Avatar" class="avatar">
+        </div>
+        <!-- Username Input -->
+        <div class="container">
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
+            <!-- Password Input-->
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+            <!-- Login Button-->
+            <a href="invoice.html? + stringified">
+                <button type="submit">Login</button>
+            </a>
+        </div>
+        <!-- Clicking the cancel button takes user back to products page-->
+        <div class="container" style="background-color:lightgoldenrodyellow">
+            <a href="display_products.html">
+                <button type="button" class="cancelbtn">Cancel</button>
+            </a>
+            <!-- Register an account button -->
+            <span class="register">Don't have an account? <a href="register_page.html">Register now!</a></span>
+        </div>
+    </form>
+</body>
+
+</html>
