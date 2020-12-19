@@ -19,9 +19,15 @@
         "password": "pass",
         "email": "joe@jot.com"
     },
-    "ahky":{
+    "ahky": {
         "name": "Amber Young",
         "password": "pokemart",
         "email": "ahky2000@hawaii.edu"
+    },
+    "kurt": {
+        "username": "kurt",
+        "password": "pokeball",
+        "email": "tsutarja@gmail.com",
+        "fullname": "Kurt PokeBallMaker"
     }
 }
