@@ -1,8 +1,11 @@
 <!--
-    
+
 -->
 <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press Start 2P">
     <script src="./functions.js"></script>
+    <center>
+        <a href="index.html">home</a>&nbsp&nbsp;
     <script>
         var products_data;
         loadJSON('get_products_data', function (response) {
@@ -15,6 +18,8 @@
         });
         nav_bar('', products_data);
     </script>
+    &nbsp&nbsp;<a href="login_page.html">login/register</a>
+    </center>
 </head>
 <h2>You have in your shopping cart:</h2>
 <table border><th>Quantity</th><th>Item</th>
@@ -30,3 +35,21 @@
 }
 </script>
 </table>
+
+<style>
+    body {
+        background-color: skyblue;
+        font-family: "Press Start 2P";
+    }
+    img {
+        width: 150px;
+    }
+    table {
+        background-color: snow;
+    }
+    center {
+        background-color: pink;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+</style>

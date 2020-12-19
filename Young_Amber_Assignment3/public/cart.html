@@ -1,0 +1,56 @@
+<!-- 
+    Created by: Amber Young
+    Code from A3 Example
+    Cart Page 
+ -->
+
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press Start 2P">
+    <script src="./functions.js"></script>
+
+    <script>
+        var products_data;
+        loadJSON('get_products_data', function (response) {
+            // Parsing JSON string into object
+            products_data = JSON.parse(response);
+        });
+        loadJSON('get_cart', function (response) {
+            // Parsing JSON string into object
+            shopping_cart = JSON.parse(response);
+        });
+    </script>
+    <!-- Link for stylesheet -->
+    <link href="stylesheet.css" rel="stylesheet">
+</head>
+
+<h1>You have in your shopping cart:</h1>
+<table border>
+    <th>Quantity</th>
+    <th>Item</th>
+
+    <br>
+    <script>
+        for (product_key in products_data) {
+            for (i = 0; i < products_data[product_key].length; i++) {
+                if (typeof shopping_cart[product_key] == 'undefined') continue;
+                qty = shopping_cart[product_key][i];
+                if (qty > 0) {
+                    document.write(`<tr><td>${qty}</td><td>${products_data[product_key][i].name}</td><tr>`);
+                }
+            }
+        }
+    </script>
+</table>
+<br>
+<div>
+    <form action="/login.html" method="GET">
+        <input type="submit" value="Buy" name="purchase_submit">
+    </form>
+
+</div>
+<div>
+    <form action="/display_products.html" method="GET">
+        <input type="submit" value="Continue Shopping" name="/display_products.html">
+    </form>
+
+</div>

@@ -1,0 +1,40 @@
+
+body {
+    background-color: skyblue; 
+    font-family: "Press Start 2P";
+}
+/* sizing and borders for images */
+img {
+    width: 150px;
+    height: 150px;
+    border: 3px solid grey;
+}
+/* centering of page and color */
+div {
+    align-content: center;
+    text-align: center;
+    color: white;
+}
+/* submit button */
+input {
+  color: black;
+}
+ 
+/* invoice */
+table{
+    text-align: center;
+    border-color: lightskyblue;
+    margin-left: auto;
+    margin-right: auto;
+}
+  
+th, td {
+    padding: 5px;
+    text-align: center;
+    background:  white;
+}
+center {
+    background-color: pink;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}

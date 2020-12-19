@@ -4,9 +4,11 @@ var myParser = require("body-parser");
 var session = require('express-session');
 var products_data = require('./products.json');
 var nodemailer = require('nodemailer');
+var cookieParser = require('cookie-parser');
 
+app.use(cookieParser());
 app.use(myParser.urlencoded({ extended: true }));
-app.use(session({secret: "ITM352 rocks!",resave: false, saveUninitialized: true}));
+app.use(session({ secret: "Pocket Monsters", resave: false, saveUninitialized: true }));
 
 app.all('*', function (request, response, next) {
   // need to initialize an object to store the cart in the session. We do it when there is any request so that we don't have to check it exists
@@ -17,63 +19,107 @@ app.all('*', function (request, response, next) {
 });
 
 app.post("/get_products_data", function (request, response) {
-    response.json(products_data);
+  response.json(products_data);
 });
 
 app.get("/add_to_cart", function (request, response) {
-    var products_key = request.query['products_key']; // get the product key sent from the form post
-    var quantities = request.query['quantities'].map(Number); // Get quantities from the form post and convert strings from form post to numbers
-    request.session.cart[products_key] = quantities; // store the quantities array in the session cart object with the same products_key. 
-    response.redirect('./cart.html');
-  });
-  
-  app.get("/get_cart", function (request, response) {
-    response.json(request.session.cart);
-  });
-  
-  app.get("/checkout", function (request, response) {
-    var user_email = request.query.email; // email address in querystring
-  // Generate HTML invoice string
-    var invoice_str = `Thank you for your order ${user_email}!<table border><th>Quantity</th><th>Item</th>`;
-    var shopping_cart = request.session.cart;
-    for(product_key in products_data) {
-      for(i=0; i<products_data[product_key].length; i++) {
-          if(typeof shopping_cart[product_key] == 'undefined') continue;
-          qty = shopping_cart[product_key][i];
-          if(qty > 0) {
-            invoice_str += `<tr><td>${qty}</td><td>${products_data[product_key][i].name}</td><tr>`;
-          }
-      }
+  var products_key = request.query['products_key']; // get the product key sent from the form post
+  var quantities = request.query['quantities'].map(Number); // Get quantities from the form post and convert strings from form post to numbers
+  request.session.cart[products_key] = quantities; // store the quantities array in the session cart object with the same products_key. 
+  response.redirect('./cart.html');
+});
+
+app.get("/get_cart", function (request, response) {
+  response.json(request.session.cart);
+});
+
+// login user 
+app.get("/login", function (request, response){
+  response.redirect(`./login.html`)
+})
+
+// code to process login, edited from lab14 ProcessLogin.js
+app.post("/process_login", function (request, response) {
+  // Process login form POST and redirect to invoice page if ok, back to login page if not
+  var login_error = [];
+  console.log("Got a POST login request");
+  var stringified = queryString.stringify(request.query);
+  user_name_from_form = request.body.username.toLowerCase();
+  console.log("User name from form=" + user_name_from_form);
+  if ( user_data[user_name_from_form] != 'undefined') {
+    if (user_data[user_name_from_form].password == request.body.password) {
+      request.query.username = user_name_from_form;
+      console.log(user_data[request.query.username].name);
+      request.query.name = user_data[request.query.username].name
+      response.cookie('username',username, {maxAge:300000})
+      response.redirect('/invoice.html?' + stringified);
+      return;
+    }
+    else {
+      console.log(login_error);
+      request.query.username = user_name_from_form;
+      request.query.name = user_data[user_name_from_form].name;
+      request.query.login_error = login_error.join(';');
+    }
+  } else {
+    login_error.push = ('Invalid Username or Password');
+    console.log(login_error);
+    request.query.username = user_name_from_form;
+    request.query.name = user_data[user_name_from_form].name;
+    request.query.login_error = login_error.join(';');
   }
-    invoice_str += '</table>';
+  response.redirect('./invoice.html?' + stringified);
+});
+// logout user
+app.get("/logout", function (request, response) {
+  response.clearCookie("username").redirect(`./index.html`)
+});
+
+app.get("/checkout", function (request, response) {
+  var user_email = request.query.email; // email address in querystring
+  // Generate HTML invoice string
+  var invoice_str = `Thank you for your order ${user_email}!<table border><th>Quantity</th><th>Item</th>`;
+  var shopping_cart = request.session.cart;
+  for (product_key in products_data) {
+    for (i = 0; i < products_data[product_key].length; i++) {
+      if (typeof shopping_cart[product_key] == 'undefined') continue;
+      qty = shopping_cart[product_key][i];
+      if (qty > 0) {
+        invoice_str += `<tr><td>${qty}</td><td>${products_data[product_key][i].name}</td><tr>`;
+      }
+    }
+  }
+  invoice_str += '</table>';
+  
+
   // Set up mail server. Only will work on UH Network due to security restrictions
-    var transporter = nodemailer.createTransport({
-      host: "mail.hawaii.edu",
-      port: 25,
-      secure: false, // use TLS
-      tls: {
-        // do not fail on invalid certs
-        rejectUnauthorized: false
-      }
-    });
-  
-    var mailOptions = {
-      from: 'phoney_store@bogus.com',
-      to: user_email,
-      subject: 'Your phoney invoice',
-      html: invoice_str
-    };
-  
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        invoice_str += '<br>There was an error and your invoice could not be emailed :(';
-      } else {
-        invoice_str += `<br>Your invoice was mailed to ${user_email}`;
-      }
-      response.send(invoice_str);
-    });
-   
+  var transporter = nodemailer.createTransport({
+    host: "mail.hawaii.edu",
+    port: 25,
+    secure: false, // use TLS
+    tls: {
+      // do not fail on invalid certs
+      rejectUnauthorized: false
+    }
   });
-  
+
+  var mailOptions = {
+    from: 'phoney_store@bogus.com',
+    to: user_email,
+    subject: 'Your phoney invoice',
+    html: invoice_str
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      invoice_str += '<br>There was an error and your invoice could not be emailed :(';
+    } else {
+      invoice_str += `<br>Your invoice was mailed to ${user_email}`;
+    }
+    response.send(invoice_str);
+  });
+
+});
+
 app.use(express.static('./public'));
 app.listen(8080, () => console.log(`listening on port 8080`));

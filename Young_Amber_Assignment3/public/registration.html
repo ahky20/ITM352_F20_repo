@@ -1,0 +1,107 @@
+<script>
+  window.onload = function () {
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has("username")) { //Gets username 
+      f.fullname.value = urlParams.get("fullname"); // check full name 
+      f.username.value = urlParams.get("username"); // check username 
+      f.email.value = urlParams.get("email"); // check email 
+      f.password.value = urlParams.get("password"); // check password 
+      f.repeat_password.value = urlParams.get("repeat_password"); // check repeat password 
+      if (urlParams.has("username_error")) { // check username errors
+        username_label.innerHTML = urlParams.get("username_error");
+      }
+      if (urlParams.has("fullname_error")) { // check fullname errors 
+        fullname_label.innerHTML = urlParams.get("fullname_error");
+      }
+      if (urlParams.has("email_error")) { // check email errors 
+        fullname_label.innerHTML = urlParams.get("email_error");
+      }
+      checkpassword(); // separate function to check passwords
+    }
+  }
+</script>
+
+<html lang="en">
+<link href="stylesheet.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press Start 2P">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+</head>
+
+<body>
+
+  <script>
+    function checkpassword() {
+      var p = f.password.value;
+      var cp = f.repeat_password.value;
+      //check passwords match
+      if (p == cp) {
+      } else {
+        // show error message that passwords don't match and to retry
+        alert("Passwords don't match, please reenter passwords");
+        response.redirect("/registration.html?");
+      }
+    }
+  </script>
+
+  <body>
+    <h1>Registration Form</h1>
+    <div>
+      <form name="f" method="POST" action="">
+        <!--Username Input-->
+        <div class="container">
+          <label for="username">Username:</label>
+          <input type="text" name="username" size="40" required title="Either 4-10 Characters & only numbers/letters"
+            placeholder="4-10 characters, letters and numbers only"><label for="username"
+            id="username_label"></label><br />
+        </div>
+        <br>
+        <!--Password Input-->
+        <div class="container">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" size="40" pattern=".{6,}" required
+            title="6 characters minimum" placeholder="minimum 6 characters"><br />
+        </div>
+        <br>
+        <!--Repeat Password-->
+        <div class="container">
+          <label for="repeatpassword">Repeat Password:</label>
+          <input type="password" id="repeat_password" name="repeat_password" size="40" pattern=".{6,}" required
+            title="6 characters minimum" placeholder="must match above password"><br />
+        </div>
+        <br>
+        <!--Fullname-->
+        <div class="container">
+          <label for="fullname">Full Name:</label>
+          <input type="text" name="fullname" size="50" maxlength="30"
+            placeholder="fullname here, no more than 30 characters if possible" required
+            title="Only Letters and add a space"><label for="fullname" id="fullname_label"></label><br />
+        </div>
+        <br>
+        <!--Email-->
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" name="email" size="40" placeholder="enter valid email"><label for="email"
+            id="email_label"></label>
+        </div>
+        <br>
+        <!--Submit Registration Form-->
+        <input type="submit" value="Submit" id="submit" value="checkpassword" onclick="checkpassword()">
+      <!-- Clicking the cancel button takes user back to products page-->
+      <br>
+      <div class="container" >
+        <a href="display_products.html">
+            <button type="button" class="cancelbtn">Cancel</button>
+        </a>
+      </form>
+    </div>
+    <script>
+    </script>
+  </body>
+</body>
+
+</html>
